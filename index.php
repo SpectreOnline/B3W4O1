@@ -7,6 +7,7 @@ $stmt->execute();
 
 $pdo = null;
 
+$count = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +24,9 @@ $pdo = null;
     <?php include('assets/pages/header.php');?>
     <?php 
     foreach($stmt as $row){
-        echo("<div class='characterplate' style = background-color:$row[5];><img src='assets/images/$row[2]'>
+        $i++;
+        $duration = $i."s";
+        echo("<div class='characterplate' style = 'background-color:$row[5]; animation-duration: $duration;'><a href='character.php?id=$row[0]'><img src='assets/images/$row[2]' class ='indeximg'></a>
         
         <h2 class='charname'>$row[1]</h2><div class='stat'><i class='fas fa-heart'></i>$row[3]<br><i class='fas fa-fist-raised'></i>$row[6]<br><i class='fas fa-shield-alt'></i>$row[7]<br>
         <a href='character.php?id=$row[0]' class='details'><i class='fas fa-search'></i>Details</a>
