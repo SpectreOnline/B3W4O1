@@ -30,8 +30,7 @@ $pdo = null;
 <i class='fas fa-shield-alt'></i><?=$char['defense']?><br>
 </div>
 <div class="charequip" style = background-color:<?=$char['color']?>>
-<?php if($char['weapon'] != null) echo "Weapon: <br>";?>
-<?php if($char['weapon'] != null) echo $char['weapon']. ' <br> <br>'; ?>
+<?php if($char['weapon'] != null) echo "Weapon: <br>" . $char['weapon']. ' <br> <br>';?>
 
 <?php if($char['armor'] != null) echo "Armor: <br>";?> 
 <?php if($char['armor'] != null) echo $char['armor'] . '<br> <br>'; ?> 

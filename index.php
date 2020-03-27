@@ -5,6 +5,8 @@ require('connect.php');
 $stmt = $pdo->prepare("SELECT * FROM characters ORDER BY name ");
 $stmt->execute();
 
+$result = $stmt->fetchall();
+
 $pdo = null;
 
 $count = 1;
@@ -23,16 +25,17 @@ $count = 1;
     <!--Sets the header that is to be used for both index.php and characters.php -->
     <?php include('assets/pages/header.php');?>
     <?php 
-    foreach($stmt as $row){
-        $i++;
-        $duration = $i."s";
-        echo("<div class='characterplate' style = 'background-color:$row[5]; animation-duration: $duration;'><a href='character.php?id=$row[0]'><img src='assets/images/$row[2]' class ='indeximg'></a>
+    foreach($result as $row){
+        ?>
+        <div class='characterplate' style = "background-color:<?=$row['color']?>;">
+        <a href='character.php?id=<?=$row['id']?>'><img src="assets/images/<?=$row['avatar']?>" class ='indeximg'></a>
         
-        <h2 class='charname'>$row[1]</h2><div class='stat'><i class='fas fa-heart'></i>$row[3]<br><i class='fas fa-fist-raised'></i>$row[6]<br><i class='fas fa-shield-alt'></i>$row[7]<br>
-        <a href='character.php?id=$row[0]' class='details'><i class='fas fa-search'></i>Details</a>
+        <h2 class='charname'><?=$row['name']?></h2><div class='stat'><i class='fas fa-heart'></i><?=$row['health']?><br><i class='fas fa-fist-raised'></i><?=$row['attack']?><br><i class='fas fa-shield-alt'></i><?=$row['defense']?><br>
+        <a href='character.php?id=<?=$row['id']?>' class='details'><i class='fas fa-search'></i>Details</a>
         </div>
         
-        </div>");
+        </div>
+    <?php
     }
     ?>
     <?php include('assets/pages/footer.php'); ?>
